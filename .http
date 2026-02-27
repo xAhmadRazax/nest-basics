@@ -1,0 +1,20 @@
+### variables
+@baseUrl = http://localhost:3000/api/v1
+@contentType = application/json
+
+#------------------------------------
+# basic requests
+# get all tasks
+
+GET {{baseUrl}}/tasks
+GET {{baseUrl}}/tasks/123
+
+
+### Create task
+POST {{baseUrl}}/tasks
+Content-Type: {{contentType}}
+
+{
+    "title": "Learn nest js",
+    "description": "Complete the nest js course"
+}
