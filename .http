@@ -7,14 +7,40 @@
 # get all tasks
 
 GET {{baseUrl}}/tasks
-GET {{baseUrl}}/tasks/123
+###
+GET {{baseUrl}}/tasks/7d1b240a-10ab-41b1-be09-274f265efa97
 
 
 ### Create task
+# @name createTask
 POST {{baseUrl}}/tasks
 Content-Type: {{contentType}}
 
 {
     "title": "Learn nest js",
-    "description": "Complete the nest js course"
+    "description": "Learn how to use nest js framework for building scalable server-side applications"
 }
+
+### Set the task id
+@taskId = {{createTask.response.body.id}}
+###
+PATCH {{baseUrl}}/tasks/{{taskId}}/status
+Content-Type: {{contentType}}
+
+{
+    "status": "IN_PROGRESS"
+}
+
+###
+PATCH {{baseUrl}}/tasks/{{taskId}}
+Content-Type: {{contentType}}
+
+{
+    "title": "Learn nest js - updated",
+    "description": "Learn how to use nest js framework for building scalable server-side applications - updated"
+}
+
+
+
+### delete task
+DELETE {{baseUrl}}/tasks/{{taskId}}
