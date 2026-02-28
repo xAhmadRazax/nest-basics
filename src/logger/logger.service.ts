@@ -5,8 +5,7 @@ import { MessageFormatterService } from 'src/message-formatter/message-formatter
 export class LoggerService {
   constructor(private readonly messageFormatter: MessageFormatterService) {}
 
-  log() {
-    const log = this.messageFormatter.format(`Hello world`);
-    console.log(log);
+  log(message: string) {
+    return this.messageFormatter.format(message);
   }
 }
