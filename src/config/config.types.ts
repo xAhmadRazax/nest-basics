@@ -1,8 +1,10 @@
+import { TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import { AppConfig } from './app.config';
 import * as Joi from 'joi';
 
 export interface ConfigType {
   app: AppConfig;
+  database: TypeOrmModuleAsyncOptions;
 }
 
 export const appConfigSchema = Joi.object({
@@ -12,4 +14,5 @@ export const appConfigSchema = Joi.object({
   DB_USERNAME: Joi.string().required(),
   DB_PASSWORD: Joi.string().required(),
   DB_DATABASE: Joi.string().required(),
+  DB_SYNC: Joi.number().valid(0, 1).required(),
 });

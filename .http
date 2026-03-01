@@ -7,8 +7,6 @@
 # get all tasks
 
 GET {{baseUrl}}/tasks
-###
-GET {{baseUrl}}/tasks/7d1b240a-10ab-41b1-be09-274f265efa97
 
 
 ### Create task
@@ -18,17 +16,27 @@ Content-Type: {{contentType}}
 
 {
     "title": "Learn nest js",
-    "description": "Learn how to use nest js framework for building scalable server-side applications"
+    "description": "Learn how to use nest js framework for building scalable server-side applications",
+    "userId":"1d71ce28-0c12-4865-97c9-2c190da6eb04"
+    ,"labels":[{"name":"Nice"},{"name":"wow"},{"name":"wasmt expecting"}]
 }
 
 ### Set the task id
 @taskId = {{createTask.response.body.id}}
 ###
+
+### find task by id
+
+GET {{baseUrl}}/tasks/{{taskId}}
+
+
+### update task status
 PATCH {{baseUrl}}/tasks/{{taskId}}/status
 Content-Type: {{contentType}}
 
 {
     "status": "IN_PROGRESS"
+    ,"labels":[]
 }
 
 ###
