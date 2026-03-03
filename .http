@@ -4,11 +4,19 @@
 
 #------------------------------------
 # basic requests
-# get all tasks
-
+# @name getAllTasks
 GET {{baseUrl}}/tasks
+###
+# @name getAllWithSearchQuery
+GET {{baseUrl}}/tasks?search=Nest
 
+###
+# @name getAllWithFilteredByLabel
+GET {{baseUrl}}/tasks?labels=wow
 
+###
+# @name getAllSorted
+GET {{baseUrl}}/tasks?sortBy=createdAt&sortOrder=DESC
 ### Create task
 # @name createTask
 POST {{baseUrl}}/tasks
@@ -26,20 +34,22 @@ Content-Type: {{contentType}}
 ###
 
 ### find task by id
-
+# @name findTaskById
 GET {{baseUrl}}/tasks/{{taskId}}
 
 
 ### update task status
+# @name updateTaskStatus
 PATCH {{baseUrl}}/tasks/{{taskId}}/status
 Content-Type: {{contentType}}
 
 {
     "status": "IN_PROGRESS"
-    ,"labels":[]
+
 }
 
-###
+### update task
+# @name updateTask
 PATCH {{baseUrl}}/tasks/{{taskId}}
 Content-Type: {{contentType}}
 
@@ -51,4 +61,26 @@ Content-Type: {{contentType}}
 
 
 ### delete task
+# @name deleteTask
 DELETE {{baseUrl}}/tasks/{{taskId}}
+
+### add specific labels to tasks
+# @name addLabels
+POST {{baseUrl}}/tasks/{{taskId}}/labels
+Content-Type: {{contentType}}
+
+[
+    {"name":"backend"},
+    {"name":"ja1"}
+ ]
+
+
+### remove specific labels to tasks
+# @name removeLabels
+DELETE  {{baseUrl}}/tasks/{{taskId}}/labels
+Content-Type: {{contentType}}
+
+[
+  "backend",
+    "ja1"
+ ]
